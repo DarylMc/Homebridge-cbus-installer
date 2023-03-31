@@ -1,99 +1,50 @@
-# Setup the Pi
+# Setup Homebridge-CBus and CGate on Raspberry Pi using MacOS
 
-## Pre-req's
+- You'll need a [Raspberry Pi](https://core-electronics.com.au/raspberry-pi-4-model-b-2gb.html) (recommend Raspberry Pi4 Model B 2GB ram).
+- [Case for Raspberry Pi](https://core-electronics.com.au/pimoroni-aluminium-heatsink-case-for-raspberry-pi-4-black.html)
+- [Power supply for Raspberry Pi4](https://core-electronics.com.au/raspberry-pi-4-official-power-supply-usb-c-5v-15w-black.html)
+- microSD card (recommend [SanDisk Extreme Pro 64GB](https://www.officeworks.com.au/shop/officeworks/p/sandisk-extreme-pro-64gb-microsdxc-memory-card-sdsqxcu064))
+- A local network connection (preferably wired).
+- CBus network interface eg CNI (5500PCI RS232 or USB also suitable with additional hardware and or software setup).  
+- Your C-Bus project xml file.
 
-- You'll need a Pi and memory card.
-- A network connection (either wired or Wifi depending on your preference).
+Download and install [Raspberry Pi Imager](https://www.raspberrypi.com/software/)  
+Write prebuilt Homebridge image to SD card  
+Select Operating System >
+Other specific-purpose OS > 
+Home assistants and home automation > 
+Homebridge > 
+Offical Homebridge Raspberry Pi image  
 
-> If you're using a wired network, you'll need to be able to query your DHCP server so you can find the IP address that gets allocated to the Pi. (In a simple home setup, your internet gateway device or WiFi router will also be your DHCP server.)
+Choose Storage (SD)
 
-- Your C-Bus network's "tags file". (This will be named after your project name and have a .xml extension).
-- Some software that will let you transfer the tags file to the Pi. I use [WinSCP](https://winscp.net/eng/index.php), but there are plenty of alternatives.
-- Software that will let you connect via SSH to the Pi. (Windows 10 now does this natively.)
+In Imager advanced settings 
+- Would you like to prefill the wifi password from the system keychain? no
+- Set hostname `homebridge`
+- Enable SSH, use password authentication
+- Set username `pi`
+- Set password
+- do not configure wireless LAN here
+- Set locale settings
+- Select Eject media when finished
+- Save
 
-
-If you're starting from scratch, start here at Step 1.
-
-
-1. Prepare the memory card with the [Homebridge Raspbian](https://github.com/homebridge/homebridge-raspbian-image) image.
-2. If you're building a Pi with a wired network connection, make sure it's connected before proceeding.
-
-> You don't need to connect a monitor or keyboard, although if you have one, a monitor will display some extra info that might help if you're having problems connecting to the Pi in the later steps.
-
-3. Add power and turn it on.
+Write   
+1. Once write is finished remove SD card and insert into Raspberry Pi  
+2. Connect LAN network cable to Raspberry Pi  
+3. Connect power to boot Raspberry Pi   
 4. Wait a minute or two for the Pi to boot.
-5. __If you're building the Pi on a wired network, jump to Step 10.__
-6. The Pi will create a WiFi network called "Homebridge WiFi Setup". Connect to it from a computer or your phone:
 
-<table>
-  <tr>
-    <th>Mobile</th>
-    <th>PC</th>
-  </tr>
-  <tr>
-    <td>
-      <p align="center">
-      <img src="https://user-images.githubusercontent.com/11004787/89696847-ff336b80-d95c-11ea-9f16-a4b793761ab8.png" width="40%">
-      </p>
-    </td>
-    <td>
-      <p align="center">
-      <img src="https://user-images.githubusercontent.com/11004787/89696867-09ee0080-d95d-11ea-8103-e557a61e2c7f.png" width="40%">
-      </p>
-    </td>
-  </tr>
-</table>
-
-7. A browser window should open prompting you for the details of your normal WiFi network. Enter its SSID, passphrase and tap/click Connect:
-
-<table>
-  <tr>
-    <th>Mobile</th>
-    <th>PC</th>
-  </tr>
-  <tr>
-    <td>
-      <p align="center">
-      <img src="https://user-images.githubusercontent.com/11004787/89696959-5df8e500-d95d-11ea-9782-27a53eee3baf.png" width="40%">
-      </p>
-    </td>
-    <td>
-      <p align="center">
-      <img src="https://user-images.githubusercontent.com/11004787/89696964-66512000-d95d-11ea-9726-7207273ea1fb.png" width="40%">
-      </p>
-    </td>
-  </tr>
-</table>
-
-8. The Pi will now attempt to connect to that WiFi network. If it is unable to (bad password?) it will revert to its "Homebridge WiFi Setup" network for you to try again:
-
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/11004787/89697114-09a23500-d95e-11ea-9aaf-319841e5b85d.png" width="40%">
-</p>
-
-> The success of the above will be indicated by the "Homebridge WiFi Setup" network disappearing from the list of available networks.
-
-9. Reconnect to your normal WiFi network.
-
-10. Launch a browser to http://homebridge.local & sign in with the default credentials of admin/admin:
-
-<p align="center">
-<img src="https://user-images.githubusercontent.com/11004787/89697356-29862880-d95f-11ea-92ff-1ea033e72e9f.png" width="60%">
-</p>
-
-11. The address bar will update to reveal the IP address of the Pi. Note this for the next steps:
-
-<p align="center">
-<img src="https://user-images.githubusercontent.com/11004787/89698093-a49d0e00-d962-11ea-852c-44367f960147.png" width="60%">
-</p>
+5. Launch a browser to http://homebridge.local  create user `admin` and set a password
 
 ## Copy the Tags file
 
-12. Your C-bus network's "Tags file" is a file you'll find where-ever your C-bus network's current instance of "C-Gate" lives. It's essentially a dictionary file, matching the human-readable names you've given the inputs and outputs to the "Group Addresses" that C-Bus uses on the network.
+6. Your C-bus network's "Tags file" is a file you'll find where-ever your C-bus network's current instance of "C-Gate" lives. It's essentially a dictionary file, matching the human-readable names you've given the inputs and outputs to the "Group Addresses" that C-Bus uses on the network.
 
 On Windows, the default path for it is `C:\Clipsal\C-Gate2\tag\` and it will be called \<YourNetworkName\>.xml".
   
-> Make sure the filename is the name of your network, because the script uses the filename to populate several places in the config where C-Gate and Homebridge need to know the network name.  
+> Make sure the filename is the name of your network, because the script uses the filename to populate several places in the config where C-Gate and Homebridge need to know the network name.   
+> Case matters and cgate is expecting UPPERCASE.xml
   
   13. Copy this file to the Pi, placing it in the /home/pi/ directory. Here's a screen-grab of ["WinSCP"](https://winscp.net/eng/index.php) which I use for this purpose. (You may have or prefer a different application.)
   
