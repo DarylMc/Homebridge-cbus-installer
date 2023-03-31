@@ -5,7 +5,7 @@
 - [Power supply for Raspberry Pi4](https://core-electronics.com.au/raspberry-pi-4-official-power-supply-usb-c-5v-15w-black.html)
 - microSD card (recommend [SanDisk Extreme Pro 64GB](https://www.officeworks.com.au/shop/officeworks/p/sandisk-extreme-pro-64gb-microsdxc-memory-card-sdsqxcu064))
 - A local network connection (preferably wired).
-- CBus network interface eg CNI (5500PCI RS232 or USB also suitable with additional hardware and or software setup).  
+- CBus network interface eg CNI (5500PCI RS232 or USB are also suitable with additional hardware and or software setup).  
 - Your C-Bus project xml file.
 
 Download and install [Raspberry Pi Imager](https://www.raspberrypi.com/software/)  
