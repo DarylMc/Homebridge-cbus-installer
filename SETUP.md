@@ -82,7 +82,7 @@ sudo hb-service add homebridge-cbus
 exit
 ```
 
-We need to install Subversion so we can download *just* the needed bits of the repo from GitHub:
+Install Subversion
 ```txt
 sudo apt-get install subversion -y
 ```
@@ -91,7 +91,7 @@ This downloads the repo, dropping the structure into the home directory:
 svn export https://github.com/greiginsydney/Homebridge-cbus-installer/trunk/code/ ~ --force
 ``` 
 
-All the hard work is done by a script in the repo, but it needs to be made executable first:
+Make setup.sh executable
 ```txt
 sudo chmod +x setup.sh
 ```
@@ -104,94 +104,33 @@ sudo chmod +x setup.sh
 sudo -E -H ./setup.sh step1
 ```
 
-> If any of the script's steps fail, the script will abort and on-screen info should reveal the component that failed. You can simply re-run the script at any time (up-arrow / return) and it will simply skip over those steps where no changes are required. There are a lot of moving parts in the Raspbian/Linux world, and sometimes a required server might be down or overloaded. Time-outs aren't uncommon, hence why simply wait and retry is a valid remediation action.
-
-Having installed C-Gate, we now need to edit one of the security files to ensure authorised remote machines - like the one you'll run Toolkit from - are allowed to connect.
-
-The script prompts the user, autofilling a guess at your local network, based upon the IP address of the Pi. Backspace if you want to edit this, or just press return if the value is correct and you want to whitelist that whole network:
-
+Reboot once completed 
 ```txt
-=======================================
-C-Gate won't let remote clients connect to it if they're not in the file
-/usr/local/bin/cgate/config/access.txt.
-Add your Admin machine's IP address here, or to whitelist an entire network
-add it with '255' as the last octet. e.g.:
-192.168.1.7 whitelists just the one machine, whereas
-192.168.1.255 whitelists the whole 192.168.1.x network.
-The more IPs you whitelist, the less secure C-Gate becomes.
-
-Enter an IP or network address to allow/whitelist : 10.10.17.255
-Enter an IP or network address to allow/whitelist :
+sudo reboot
 ```
 
-This menu will loop, allowing you to enter extra IPs. Press Return on its own to break out of this loop.
-
-If you overlooked copying the tags file in Step 7, or put it in the wrong location on the Pi, the script will exit:
-
-```
-Copy your tags file (i.e. "<ProjectName>.xml)" to /home/pi/ and then run Step2
-
-pi@homebridge:~ $ 
-```
-
-Do not pass Go, etc. Return to Step 7, then manually run step2:
-
-```txt
-sudo -E ./setup.sh step2
-```
-
-21. Step 22 here picks up with the output from the script's "step2". (Yes, I probably need to rename them to make this less confusing.)
-
-22. __If everything went OK after step 28, the script proceeds to run step2 automatically.__
-
-23. The script will now move some of the supporting files from the repo to their final homes, and edit some of the default config in the Pi. 
-
-24. It will output its progress to the screen. You'll see it's gone with "19P" which is my network name:
-
-```txt
-pi@raspberrypi:~ $ sudo -E ./setup.sh step2
->> Assuming project name = 19P, and setting C-Gate project.start & project.default values accordingly.
-renamed 'homebridge.timer' -> '/etc/systemd/system/homebridge.timer'
-Added "homebridge-cbus.CBus" to /var/lib/homebridge/config.json OK
-Removed /etc/systemd/system/multi-user.target.wants/homebridge.service.
-Created symlink /etc/systemd/system/multi-user.target.wants/homebridge.timer → /etc/systemd/system/homebridge.timer.
->> Exited step 2 OK.
-
-Reboot now? [Y/n]:
-```
-Pressing Return or anything but Y/y will cause the Pi to reboot.
-
-25. Once the Pi reboots, C-Gate and Homebridge will come up. It's this stage that populates your "my-platform.json" file.
+Once the Pi reboots, C-Gate and Homebridge will come up. It's this stage that populates your "my-platform.json" file.
 Take a break for 10 minutes.
 
-## Tweak the config
-At this point you have an almost working Homebridge setup, but some tweaking and fine-tuning is required.
 
-26. To use the script, re-run it with the new 'copy' switch:
+## 10. Re-run the script with the copy switch:
 ```txt
 sudo -E ./setup.sh copy
 ```
 
-27. If the script exits with "Done" immediately, the mostly likely reason is that you've not given Homebridge enough time to populate the my-platform.json file. Wait a couple of minutes and try again.
-```txt
-sudo -E ./setup.sh copy
-Done
 
-The PIN to enter in your iDevice is 031-45-154
+Restart Homebridge? [Y/n]
 
-Restart Homebridge? [Y/n]:
-```
+Assuming the file has been populated OK, the script will now read through all the GAs in my-platform.json, and if they don't exist in config.json, prompt you one-by-one to Add them, Skip them, and where the "type" of channel is reported as unknown or was guessed incorrectly, Change them to one of the possible types.
 
-28. Assuming the file has been populated OK, the script will now read through all the GAs in my-platform.json, and if they don't exist in config.json, prompt you one-by-one to Add them, Skip them, and where the "type" of channel is reported as unknown or was guessed incorrectly, Change them to one of the possible types.
-
-29. Where the Group's details are correct, pressing Return will accept the default, Add, which is highlighted in green:
+Where the Group's details are correct, pressing Return will accept the default, Add, which is highlighted in green:
 ```txt
 "type": "dimmer", "id": 18, "name": "Lounge room"
 [A]dd, [s]kip, [C]hange & enable, [q]uit?
 Added
 ```
 
-30. All that are reported as "unknown" are highlighted in yellow, and pressing Return defaults to show the Change sub-menu. Choose the highlighted letter of the appropriate type and press Return:
+All that are reported as "unknown" are highlighted in yellow, and pressing Return defaults to show the Change sub-menu. Choose the highlighted letter of the appropriate type and press Return:
 ```txt
 "type": "unknown", "id": 21, "name": "Exhaust fan"
 [a]dd, [s]kip, [C]hange & enable, [q]uit?
@@ -200,7 +139,7 @@ Change to:
 Changed to switch
 ```
 
-31. Press "s" and return to Skip any spare, unknown or unwanted GAs, and then "q" once you're done:
+Press "s" and return to Skip any spare, unknown or unwanted GAs, and then "q" once you're done:
 ```txt
 "type": "light", "id": 22, "name": "Ceiling GPO"
 [A]dd, [s]kip, [C]hange & enable, [q]uit? s
@@ -215,16 +154,15 @@ The PIN to enter in your iDevice is 031-45-154
 Restart Homebridge? [Y/n]:
 ```
 
-32. Pressing return or anything but Y/y will restart Homebridge to pick up the new settings.
+Pressing return or anything but Y/y will restart Homebridge to pick up the new settings.
 
-33. At this point you can turn to your iDevice, launch Home and select "Add Accessory".
+## 11. Add accessory to Home
 
-34. Scan the QR code from homebridge.local webpage in your browser. 
+At this point you can turn to your iDevice, launch Home and select "Add Accessory".
+
+Scan the QR code from http://homebridge.local webpage in your browser. 
 You should be able to follow your nose from there.
 
-35. You're free to repeat step 39 at any time. You won't be prompted for any of the GAs you added before, so if you want to change the "type" of an existing GA you'll need to do this by hand (`sudo nano /var/lib/homebridge/config.json`). Any GAs that you've recently added to the network or you may have subsequently decided to include can now be added to config.json just by responding to the prompts.
+
 
 <br>
-
-\- Greig.
-
