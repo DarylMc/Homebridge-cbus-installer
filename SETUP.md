@@ -39,7 +39,7 @@ Offical Homebridge Raspberry Pi image
 - Connect power to boot Raspberry Pi   
 - Wait a few minutes for the raspberry Pi's first boot.
 
-- Launch a browser to http://homebridge.local  create user `admin` and set a password  
+- Launch a browser and navigate to http://homebridge.local  create user `admin` and set a password  
 - Exit the browser for now. 
 
 
@@ -58,21 +58,14 @@ Reboot
 sudo reboot
 ```
  
-## 6. Copy the project xml to the Raspberry Pi
+## 7. Copy the project xml to the Raspberry Pi
 
-Your C-bus network's "Tags file" is a file you'll find where-ever your C-bus network's current instance of "C-Gate" lives. It's essentially a dictionary file, matching the human-readable names you've given the inputs and outputs to the "Group Addresses" that C-Bus uses on the network.
-
-On Windows, the default path for it is `C:\Clipsal\C-Gate2\tag\` and it will be called \<YourNetworkName\>.xml".
-  
-> Make sure the filename is the name of your network, because the script uses the filename to populate several places in the config where C-Gate and Homebridge need to know the network name.   
-> Case matters and CGate is expecting UPPERCASE.xml
-  
 Copy the project xml to the Pi, placing it in the /home/pi directory.  
   Here is an example how to move the file from the mac desktop to the Raspberry Pi using scp in the mac terminal    
   `scp /Users/<YourMacUserName>/Desktop/<YourProjectName>.xml pi@homebridge.local:/home/pi`
 
 
-## 7. Install software 
+## 8. Install CBus plugin and script components 
 
 SSH to the Raspberry Pi
 ```txt
@@ -102,7 +95,11 @@ All the hard work is done by a script in the repo, but it needs to be made execu
 ```txt
 sudo chmod +x setup.sh
 ```
-Now run it! 
+
+
+
+## 9. Run the script step1
+
 ```txt
 sudo -E -H ./setup.sh step1
 ```
