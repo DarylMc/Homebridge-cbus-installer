@@ -44,7 +44,7 @@ Write
 On Windows, the default path for it is `C:\Clipsal\C-Gate2\tag\` and it will be called \<YourNetworkName\>.xml".
   
 > Make sure the filename is the name of your network, because the script uses the filename to populate several places in the config where C-Gate and Homebridge need to know the network name.   
-> Case matters and cgate is expecting UPPERCASE.xml
+> Case matters and CGate is expecting UPPERCASE.xml
   
   13. Copy this file to the Pi, placing it in the /home/pi/ directory. Here's a screen-grab of ["WinSCP"](https://winscp.net/eng/index.php) which I use for this purpose. (You may have or prefer a different application.)
   
