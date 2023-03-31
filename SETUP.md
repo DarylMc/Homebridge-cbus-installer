@@ -38,52 +38,40 @@ Write
 5. Launch a browser to http://homebridge.local  create user `admin` and set a password  
 Exit the browser for now. 
 
+
+## SSH to the Raspberry Pi:
+
+6. SSH to the Pi using terminal: 
+```txt 
+ssh pi@homebridge.local 
+```
+7. Enter the password and press Return. 
+
+8. First let's make sure the Pi is up-to-date:
+```txt
+sudo apt update && sudo apt upgrade -y
+```
+
+9. `sudo reboot`
+
+Your SSH session will end here.
+Wait for the Pi to reboot 
+
 ## Copy the project xml to the Raspberry Pi
 
-6. Your C-bus network's "Tags file" is a file you'll find where-ever your C-bus network's current instance of "C-Gate" lives. It's essentially a dictionary file, matching the human-readable names you've given the inputs and outputs to the "Group Addresses" that C-Bus uses on the network.
+10. Your C-bus network's "Tags file" is a file you'll find where-ever your C-bus network's current instance of "C-Gate" lives. It's essentially a dictionary file, matching the human-readable names you've given the inputs and outputs to the "Group Addresses" that C-Bus uses on the network.
 
 On Windows, the default path for it is `C:\Clipsal\C-Gate2\tag\` and it will be called \<YourNetworkName\>.xml".
   
 > Make sure the filename is the name of your network, because the script uses the filename to populate several places in the config where C-Gate and Homebridge need to know the network name.   
 > Case matters and CGate is expecting UPPERCASE.xml
   
-  7. Copy the project xml to the Pi, placing it in the /home/pi directory.  
+  11. Copy the project xml to the Pi, placing it in the /home/pi directory.  
   Here is an example how to move the file from the mac desktop to the Raspberry Pi using scp in the mac terminal    
   `scp /Users/<YourMacUserName>/Desktop/<YourProjectName>.xml pi@homebridge.local:/home/pi`
 
-  
-## Remote config via SSH
 
-6. SSH to the Pi using terminal: 
-```txt 
-ssh pi@homebridge.local 
-```
-
-7. You should see something like this:
-```txt
-The authenticity of host '10.10.17.15 (10.10.17.15)' can't be established.
-ECDSA key fingerprint is SHA256:Ty0Bw6IZqg1234567899006534456778sFKT6QakOZ5PdJk.
-Are you sure you want to continue connecting (yes/no)?
-```
-8. Enter `yes` and press Return.
-9. The response should look like this:
-```txt
-Warning: Permanently added '10.10.17.15' (ECDSA) to the list of known hosts.
-pi@10.10.17.15's password:
-```
-10. Enter the password and press Return.
-  
-
-## Here's where all the software is updated and installed:
-
-11. First let's make sure the Pi is all up-to-date:
-```txt
-sudo apt update && sudo apt upgrade -y
-```
-
-12. `sudo reboot`.
-
-Your SSH session will end here. Wait for the Pi to reboot, sign back in again and continue. 
+12. SSH to the Raspberry Pi
 ```txt
 ssh pi@homebridge.local 
 ```
