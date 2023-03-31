@@ -8,17 +8,20 @@
 - CBus network interface eg CNI (5500PCI RS232 or USB are also suitable with additional hardware and or software setup).  
 - Your C-Bus project xml file.
 
-Download and install [Raspberry Pi Imager](https://www.raspberrypi.com/software/)  
-Write prebuilt Homebridge image to SD card  
+## 1. Download and install 
+[Raspberry Pi Imager](https://www.raspberrypi.com/software/) 
+
+## 2. Write prebuilt Homebridge image to SD card    
 Select Operating System >
 Other specific-purpose OS > 
 Home assistants and home automation > 
 Homebridge > 
 Offical Homebridge Raspberry Pi image  
 
-Choose Storage (SD)
+## 3. Choose storage
+- Select SD card 
 
-In Imager advanced settings 
+## 4. Imager advanced options  
 - Would you like to prefill the wifi password from the system keychain? no
 - Set hostname `homebridge`
 - Enable SSH, use password authentication
@@ -29,53 +32,53 @@ In Imager advanced settings
 - Select Eject media when finished
 - Save
 
-Write   
-1. Once write is finished remove SD card and insert into Raspberry Pi  
-2. Connect LAN network cable to Raspberry Pi  
-3. Connect power to boot Raspberry Pi   
-4. Wait a minute or two for the Pi to boot.
+## 5. Write 
+- Select write
+- Once write and verification is finished remove SD card and insert into Raspberry Pi  
+- Connect LAN network cable to Raspberry Pi  
+- Connect power to boot Raspberry Pi   
+- Wait a few minutes for the raspberry Pi's first boot.
 
-5. Launch a browser to http://homebridge.local  create user `admin` and set a password  
-Exit the browser for now. 
+- Launch a browser to http://homebridge.local  create user `admin` and set a password  
+- Exit the browser for now. 
 
 
-## SSH to the Raspberry Pi:
+## 5. Update the Raspberry Pi:
 
-6. SSH to the Pi using terminal: 
+- SSH to the Pi using mac terminal 
 ```txt 
 ssh pi@homebridge.local 
 ```
-7. Enter the password and press Return. 
-
-8. First let's make sure the Pi is up-to-date:
+- Update the system
 ```txt
 sudo apt update && sudo apt upgrade -y
 ```
+- Reboot
+```txt
+sudo reboot
+```
+ 
+## 6. Copy the project xml to the Raspberry Pi
 
-9. `sudo reboot`
-
-Your SSH session will end here.
-Wait for the Pi to reboot 
-
-## Copy the project xml to the Raspberry Pi
-
-10. Your C-bus network's "Tags file" is a file you'll find where-ever your C-bus network's current instance of "C-Gate" lives. It's essentially a dictionary file, matching the human-readable names you've given the inputs and outputs to the "Group Addresses" that C-Bus uses on the network.
+Your C-bus network's "Tags file" is a file you'll find where-ever your C-bus network's current instance of "C-Gate" lives. It's essentially a dictionary file, matching the human-readable names you've given the inputs and outputs to the "Group Addresses" that C-Bus uses on the network.
 
 On Windows, the default path for it is `C:\Clipsal\C-Gate2\tag\` and it will be called \<YourNetworkName\>.xml".
   
 > Make sure the filename is the name of your network, because the script uses the filename to populate several places in the config where C-Gate and Homebridge need to know the network name.   
 > Case matters and CGate is expecting UPPERCASE.xml
   
-  11. Copy the project xml to the Pi, placing it in the /home/pi directory.  
+Copy the project xml to the Pi, placing it in the /home/pi directory.  
   Here is an example how to move the file from the mac desktop to the Raspberry Pi using scp in the mac terminal    
   `scp /Users/<YourMacUserName>/Desktop/<YourProjectName>.xml pi@homebridge.local:/home/pi`
 
 
-12. SSH to the Raspberry Pi
+## 7. Install software 
+
+SSH to the Raspberry Pi
 ```txt
 ssh pi@homebridge.local 
 ```
-13. Manually install Homebridge-CBus plugin
+Manually install Homebridge-CBus plugin
 ```txt
 sudo hb-shell
 ```
@@ -86,27 +89,27 @@ sudo hb-service add homebridge-cbus
 exit
 ```
 
-14. We need to install Subversion so we can download *just* the needed bits of the repo from GitHub:
+We need to install Subversion so we can download *just* the needed bits of the repo from GitHub:
 ```txt
 sudo apt-get install subversion -y
 ```
-15. This downloads the repo, dropping the structure into the home directory:
+This downloads the repo, dropping the structure into the home directory:
 ```txt
 svn export https://github.com/greiginsydney/Homebridge-cbus-installer/trunk/code/ ~ --force
 ``` 
 
-16. All the hard work is done by a script in the repo, but it needs to be made executable first:
+All the hard work is done by a script in the repo, but it needs to be made executable first:
 ```txt
 sudo chmod +x setup.sh
 ```
-17. Now run it! 
+Now run it! 
 ```txt
 sudo -E -H ./setup.sh step1
 ```
 
 > If any of the script's steps fail, the script will abort and on-screen info should reveal the component that failed. You can simply re-run the script at any time (up-arrow / return) and it will simply skip over those steps where no changes are required. There are a lot of moving parts in the Raspbian/Linux world, and sometimes a required server might be down or overloaded. Time-outs aren't uncommon, hence why simply wait and retry is a valid remediation action.
 
-18. Having installed C-Gate, we now need to edit one of the security files to ensure authorised remote machines - like the one you'll run Toolkit from - are allowed to connect.
+Having installed C-Gate, we now need to edit one of the security files to ensure authorised remote machines - like the one you'll run Toolkit from - are allowed to connect.
 
 The script prompts the user, autofilling a guess at your local network, based upon the IP address of the Pi. Backspace if you want to edit this, or just press return if the value is correct and you want to whitelist that whole network:
 
@@ -126,7 +129,7 @@ Enter an IP or network address to allow/whitelist :
 
 This menu will loop, allowing you to enter extra IPs. Press Return on its own to break out of this loop.
 
-19. If you overlooked copying the tags file in Step 7, or put it in the wrong location on the Pi, the script will exit:
+If you overlooked copying the tags file in Step 7, or put it in the wrong location on the Pi, the script will exit:
 
 ```
 Copy your tags file (i.e. "<ProjectName>.xml)" to /home/pi/ and then run Step2
@@ -134,7 +137,7 @@ Copy your tags file (i.e. "<ProjectName>.xml)" to /home/pi/ and then run Step2
 pi@homebridge:~ $ 
 ```
 
-20. Do not pass Go, etc. Return to Step 7, then manually run step2:
+Do not pass Go, etc. Return to Step 7, then manually run step2:
 
 ```txt
 sudo -E ./setup.sh step2
