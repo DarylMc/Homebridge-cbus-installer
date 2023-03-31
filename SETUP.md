@@ -1,6 +1,6 @@
 # Setup Homebridge-CBus and CGate on Raspberry Pi using MacOS
 
-- You'll need a [Raspberry Pi](https://core-electronics.com.au/raspberry-pi-4-model-b-2gb.html) (recommend Raspberry Pi4 Model B 2GB ram).
+- You will need a [Raspberry Pi](https://core-electronics.com.au/raspberry-pi-4-model-b-2gb.html) (recommend Raspberry Pi4 Model B 2GB ram).
 - [Case for Raspberry Pi](https://core-electronics.com.au/pimoroni-aluminium-heatsink-case-for-raspberry-pi-4-black.html)
 - [Power supply for Raspberry Pi4](https://core-electronics.com.au/raspberry-pi-4-official-power-supply-usb-c-5v-15w-black.html)
 - microSD card (recommend [SanDisk Extreme Pro 64GB](https://www.officeworks.com.au/shop/officeworks/p/sandisk-extreme-pro-64gb-microsdxc-memory-card-sdsqxcu064))
