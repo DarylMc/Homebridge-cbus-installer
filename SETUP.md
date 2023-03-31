@@ -43,17 +43,17 @@ Offical Homebridge Raspberry Pi image
 - Exit the browser for now. 
 
 
-## 5. Update the Raspberry Pi:
+## 6. Update the Raspberry Pi:
 
-- SSH to the Pi using mac terminal 
+SSH to the Pi using mac terminal 
 ```txt 
 ssh pi@homebridge.local 
 ```
-- Update the system
+Update the system
 ```txt
 sudo apt update && sudo apt upgrade -y
 ```
-- Reboot
+Reboot
 ```txt
 sudo reboot
 ```
