@@ -1,5 +1,5 @@
-# Setup Homebridge-CBus and CGate on Raspberry Pi using MacOS
- Tested on M1 MacBookPro
+# Setup Homebridge-CBus and CGate on Raspberry Pi using MacOS  Tested on M1 MacBookPro
+ 
 - You will need a [Raspberry Pi](https://core-electronics.com.au/raspberry-pi-4-model-b-2gb.html) (recommend Raspberry Pi4 Model B 2GB ram).
 - [Case for Raspberry Pi](https://core-electronics.com.au/pimoroni-aluminium-heatsink-case-for-raspberry-pi-4-black.html)
 - [Power supply for Raspberry Pi4](https://core-electronics.com.au/raspberry-pi-4-official-power-supply-usb-c-5v-15w-black.html)
@@ -10,7 +10,8 @@
 
 ## 1. Download and install 
 [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager/releases/tag/v1.7.3) 
-version 1.7.3 recommended as of April 2023
+version 1.7.3 recommended as of April 2023  
+https://github.com/raspberrypi/rpi-imager/releases/download/v1.7.3/Raspberry.Pi.Imager.1.7.3.dmg
 
 ## 2. Write prebuilt Homebridge image to SD card    
 Select Operating System >
@@ -43,7 +44,6 @@ Offical Homebridge Raspberry Pi image
 - Launch a browser and navigate to http://homebridge.local  create user `admin` and set a password  
 - Exit the browser for now. 
 
-
 ## 6. Update the Raspberry Pi
 
 SSH to the Pi using mac terminal 
@@ -66,7 +66,6 @@ Copy the project xml to the Pi, placing it in the /home/pi directory.
   ```txt 
   scp /Users/<YourMacUserName>/Desktop/<YourProjectName>.xml pi@homebridge.local:/home/pi
   ```
-
 
 ## 8. Install CBus plugin and script components 
 
@@ -99,8 +98,6 @@ Make setup.sh executable
 sudo chmod +x setup.sh
 ```
 
-
-
 ## 9. Run the script step1
 
 ```txt
@@ -114,7 +111,6 @@ sudo reboot
 
 Once the Pi reboots, C-Gate and Homebridge will come up. It's this stage that populates your "my-platform.json" file.
 Take a break for 10 minutes.
-
 
 ## 10. Re-run the script with the copy switch
 ```txt
