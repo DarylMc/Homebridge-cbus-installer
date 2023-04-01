@@ -9,7 +9,8 @@
 - Your C-Bus project xml file.
 
 ## 1. Download and install 
-[Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager/releases/download/v1.7.3/Raspberry.Pi.Imager.1.7.3.dmg) 
+[Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager/releases/tag/v1.7.3) 
+version 1.7.3 recommended as of April 2023
 
 ## 2. Write prebuilt Homebridge image to SD card    
 Select Operating System >
