@@ -1,4 +1,4 @@
-<iframe width="560" height="315" src="https://www.youtube.com/embed/x28SieXtzN8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> 
+ https://youtu.be/x28SieXtzN8
 
 # Setup Homebridge-CBus and CGate on Raspberry Pi using MacOS  Tested on M1 MacBookPro
  
