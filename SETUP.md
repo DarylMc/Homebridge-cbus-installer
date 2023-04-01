@@ -1,4 +1,4 @@
-# Setup Homebridge-CBus and CGate on Raspberry Pi using MacOS
+# Setup Homebridge-CBus and CGate on Raspberry Pi using MacOS Apple Silicon
 
 - You will need a [Raspberry Pi](https://core-electronics.com.au/raspberry-pi-4-model-b-2gb.html) (recommend Raspberry Pi4 Model B 2GB ram).
 - [Case for Raspberry Pi](https://core-electronics.com.au/pimoroni-aluminium-heatsink-case-for-raspberry-pi-4-black.html)
@@ -44,7 +44,7 @@ Offical Homebridge Raspberry Pi image
 - Exit the browser for now. 
 
 
-## 6. Update the Raspberry Pi:
+## 6. Update the Raspberry Pi
 
 SSH to the Pi using mac terminal 
 ```txt 
@@ -63,7 +63,9 @@ sudo reboot
 
 Copy the project xml to the Pi, placing it in the /home/pi directory.  
   Here is an example how to move the file from the mac desktop to the Raspberry Pi using scp in the mac terminal    
-  `scp /Users/<YourMacUserName>/Desktop/<YourProjectName>.xml pi@homebridge.local:/home/pi`
+  ```txt 
+  scp /Users/<YourMacUserName>/Desktop/<YourProjectName>.xml pi@homebridge.local:/home/pi
+  ```
 
 
 ## 8. Install CBus plugin and script components 
@@ -85,7 +87,7 @@ exit
 
 Install Subversion
 ```txt
-sudo apt-get install subversion -y
+sudo apt install subversion -y
 ```
 This downloads the repo, dropping the structure into the home directory:
 ```txt
@@ -114,13 +116,10 @@ Once the Pi reboots, C-Gate and Homebridge will come up. It's this stage that po
 Take a break for 10 minutes.
 
 
-## 10. Re-run the script with the copy switch:
+## 10. Re-run the script with the copy switch
 ```txt
 sudo -E ./setup.sh copy
 ```
-
-
-Restart Homebridge? [Y/n]
 
 Assuming the file has been populated OK, the script will now read through all the GAs in my-platform.json, and if they don't exist in config.json, prompt you one-by-one to Add them, Skip them, and where the "type" of channel is reported as unknown or was guessed incorrectly, Change them to one of the possible types.
 
@@ -163,6 +162,36 @@ At this point you can turn to your iDevice, launch Home and select "Add Accessor
 
 Scan the QR code from http://homebridge.local webpage in your browser. 
 You should be able to follow your nose from there.
+
+## 12. Setup for USB serial CBus Interface
+
+```txt
+git clone https://github.com/nutechsoftware/ser2sock.git && sudo mv ser2sock /usr/local/bin && cd /usr/local/bin/ser2sock && chown -R pi:pi . && mv config.h.in config.h && cc -o ser2sock ser2sock.c && sudo nano /etc/systemd/system/ser2sock.service
+```
+Paste the following into nano
+```txt
+[Unit]
+Description=ser2sock
+
+[Service]
+ExecStart=/usr/local/bin/ser2sock/ser2sock -p 10001 -s /dev/ttyUSB0 -b 9600
+Restart=always
+User=root
+Group=root
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/usr/local/bin/ser2sock/
+
+[Install]
+WantedBy=multi-user.target
+``` 
+Ctl x y enter to save 
+
+Enable and Start ser2sock service 
+```txt
+sudo systemctl enable ser2sock.service && sudo systemctl start ser2sock.service
+``` 
+
 
 
 
