@@ -13,7 +13,7 @@
 version 1.7.3 recommended as of April 2023  
 https://github.com/raspberrypi/rpi-imager/releases/download/v1.7.3/Raspberry.Pi.Imager.1.7.3.dmg
 
-## 2. Write prebuilt Homebridge image to SD card    
+## 2. Use Imager to write prebuilt Homebridge image to SD card    
 Select Operating System >
 Other specific-purpose OS > 
 Home assistants and home automation > 
