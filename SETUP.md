@@ -163,7 +163,7 @@ At this point you can turn to your iDevice, launch Home and select "Add Accessor
 Scan the QR code from http://homebridge.local webpage in your browser. 
 You should be able to follow your nose from there.
 
-## 12. Setup for USB serial CBus Interface
+## 12. Additional setup for USB serial CBus Interface
 
 ```txt
 git clone https://github.com/nutechsoftware/ser2sock.git && sudo mv ser2sock /usr/local/bin && cd /usr/local/bin/ser2sock && chown -R pi:pi . && mv config.h.in config.h && cc -o ser2sock ser2sock.c && sudo nano /etc/systemd/system/ser2sock.service
@@ -191,7 +191,10 @@ Enable and Start ser2sock service
 ```txt
 sudo systemctl enable ser2sock.service && sudo systemctl start ser2sock.service
 ``` 
-
+Restart cgate service 
+```txt
+sudo systemctl restart cgate.service
+```
 
 
 
