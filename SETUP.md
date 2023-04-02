@@ -195,15 +195,17 @@ Restart cgate service
 ```txt
 sudo systemctl restart cgate.service
 ```
+  
+## 13. CBus Toolkit shows "An error occured while initialising Secure Socket Layer. Cannot connect to C-Gate server."     
 
-## 13. Fix error connecting to remote CGate
-CBus Toolkit shows "An error occured while initialising Secure Socket Layer. Cannot connect to C-Gate server."   
-Remove TLS V1 from disabled algorithms in java security settings  
+Optional  
+Do the following if you want to allow CBus Toolkit to connect to the remote CGate on Raspberry Pi.    
+Remove TLS V1 from disabled algorithms in java security settings on the Raspberry Pi.  
 ```text
 sudo nano /usr/lib/jvm/java-8-openjdk-armhf/jre/lib/security/java.security  
 ```
 Go To Line (control shift underscore) 704,40   
-Remove TLSv1 in the line "jdk.tls.disabledAlgorithms="  
+Remove "TLSv1" in the line "jdk.tls.disabledAlgorithms="  
 Ctl x y enter to save  
 ```text
 sudo systemctl restart cgate   
