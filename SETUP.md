@@ -43,7 +43,7 @@ Offical Homebridge Raspberry Pi image
 - Once write and verification is finished remove SD card and insert into Raspberry Pi  
 - Connect Raspberry Pi to LAN
 - Connect power to boot Raspberry Pi   
-- Wait a few minutes for the raspberry Pi's first boot.
+- Wait a few minutes since it's the raspberry Pi's first boot.
 
 - Launch a browser and navigate to http://homebridge.local  create user `admin` and set a password  
 - Exit the browser for now. 
