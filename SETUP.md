@@ -197,11 +197,17 @@ sudo systemctl restart cgate.service
 ```
 
 ## 13. Fix error connecting to remote CGate
-Allow TLS V1  
-sudo nano /usr/lib/jvm/java-8-openjdk-armhf/jre/lib/security/java.security   
+CBus Toolkit shows "An error occured while initialising Secure Socket Layer. Cannot connect to C-Gate server."   
+Allow TLS V1 in java security settings  
+```text
+sudo nano /usr/lib/jvm/java-8-openjdk-armhf/jre/lib/security/java.security  
+```
 Go To Line (control shift underscore) 704,40   
 Remove TLSv1 in the line "jdk.tls.disabledAlgorithms="  
 Ctl x y enter to save  
+```text
+sudo systemctl restart cgate   
+```
 
 
 
