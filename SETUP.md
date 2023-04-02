@@ -201,7 +201,8 @@ Allow TLS V1
 sudo nano /usr/lib/jvm/java-8-openjdk-armhf/jre/lib/security/java.security   
 Go To Line (control shift underscore) 704,40   
 Remove TLSv1 in the line "jdk.tls.disabledAlgorithms="  
-Ctl x y enter to save
+Ctl x y enter to save  
+
 
 
 <br>
