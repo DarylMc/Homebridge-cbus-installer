@@ -2,6 +2,13 @@ https://youtu.be/x28SieXtzN8
 
 
 
+<img
+  src="https://user-images.githubusercontent.com/28332686/229351337-3717be4c-e0b8-4a7b-aa8f-677401fc2fa9.jpg"
+  alt="Alt text"
+  title="Optional title"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
+
+
 # Setup Homebridge-CBus and CGate on Raspberry Pi using MacOS  Tested on M1 MacBookPro
  
 - You will need a [Raspberry Pi](https://core-electronics.com.au/raspberry-pi-4-model-b-2gb.html) (recommend Raspberry Pi4 Model B 2GB ram).
