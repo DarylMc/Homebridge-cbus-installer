@@ -41,7 +41,7 @@ Offical Homebridge Raspberry Pi image
 ## 5. Write 
 - Select write
 - Once write and verification is finished remove SD card and insert into Raspberry Pi  
-- Connect LAN network cable to Raspberry Pi  
+- Connect Raspberry Pi to LAN
 - Connect power to boot Raspberry Pi   
 - Wait a few minutes for the raspberry Pi's first boot.
 
