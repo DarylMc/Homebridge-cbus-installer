@@ -12,8 +12,8 @@
 - CBus network interface eg CNI (5500PCI RS232 or USB are also suitable with additional hardware and or software setup).  
 - Your C-Bus project xml file.
 
-## 1. Download and install 
-[Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager/releases/tag/v1.7.3) 
+## 1. Download and install Raspberry Pi Imager
+Download and install [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager/releases/tag/v1.7.3) 
 version 1.7.3 recommended as of April 2023  
 https://github.com/raspberrypi/rpi-imager/releases/download/v1.7.3/Raspberry.Pi.Imager.1.7.3.dmg
 
