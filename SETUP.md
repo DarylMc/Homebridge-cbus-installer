@@ -200,7 +200,8 @@ sudo systemctl restart cgate.service
 
 Optional  
 Do the following if you want to allow CBus Toolkit to connect to the remote CGate on Raspberry Pi.    
-Remove TLS V1 from disabled algorithms in java security settings on the Raspberry Pi.  
+Remove TLS V1 from disabled algorithms in java security settings on the Raspberry Pi.   
+Use nano to edit the java security file.  
 ```text
 sudo nano /usr/lib/jvm/java-8-openjdk-armhf/jre/lib/security/java.security  
 ```
