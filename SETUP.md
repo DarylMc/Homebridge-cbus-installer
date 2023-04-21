@@ -66,7 +66,8 @@ sudo reboot
 ## 7. Copy the project xml to the Raspberry Pi
 
 Copy the project xml to the Pi, placing it in the /home/pi directory.  
-  Here is an example how to move the file from the mac desktop to the Raspberry Pi using scp in the mac terminal    
+  Here is an example how to move the file from the mac desktop to the Raspberry Pi using scp in the mac terminal.  
+  This will copy the file from your Mac Desktop folder to the /home/pi folder on the raspberry pi.  
   ```txt 
   scp /Users/<YourMacUserName>/Desktop/<YourProjectName>.xml pi@homebridge.local:/home/pi
   ```
