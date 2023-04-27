@@ -2,7 +2,8 @@
 [<img src="https://user-images.githubusercontent.com/28332686/229351337-3717be4c-e0b8-4a7b-aa8f-677401fc2fa9.jpg">](https://youtu.be/x28SieXtzN8)
 
 
-# Setup Homebridge-CBus and CGate on Raspberry Pi using MacOS (using M1 MacBookPro)
+# Setup Homebridge-CBus and CGate on Raspberry Pi using MacOS (using M1 MacBookPro)  
+## The setup script will interactively create all Homebridge config and settings based on data in the project xml file.
  
 - You will need a [Raspberry Pi](https://core-electronics.com.au/raspberry-pi-4-model-b-2gb.html) (recommend Raspberry Pi4 Model B 2GB ram).
 - [Case for Raspberry Pi](https://core-electronics.com.au/pimoroni-aluminium-heatsink-case-for-raspberry-pi-4-black.html)
@@ -216,5 +217,8 @@ sudo systemctl restart cgate.service
 ```
 
 
+## 14. Overview
+
+![Overview](https://user-images.githubusercontent.com/28332686/234736738-3fda8505-db95-4a92-ad53-0ea20fe2bbd3.png)
 
 <br>
