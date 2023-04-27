@@ -2,7 +2,7 @@
 [<img src="https://user-images.githubusercontent.com/28332686/229351337-3717be4c-e0b8-4a7b-aa8f-677401fc2fa9.jpg">](https://youtu.be/x28SieXtzN8)
 
 
-# Setup Homebridge-CBus and CGate on Raspberry Pi using MacOS  Tested on M1 MacBookPro
+# Setup Homebridge-CBus and CGate on Raspberry Pi using MacOS (using M1 MacBookPro)
  
 - You will need a [Raspberry Pi](https://core-electronics.com.au/raspberry-pi-4-model-b-2gb.html) (recommend Raspberry Pi4 Model B 2GB ram).
 - [Case for Raspberry Pi](https://core-electronics.com.au/pimoroni-aluminium-heatsink-case-for-raspberry-pi-4-black.html)
@@ -166,6 +166,7 @@ You should be able to follow your nose from there.
 
 ## 12. Additional setup for USB serial CBus Interface
 
+Install and configure ser2sock
 ```txt
 git clone https://github.com/nutechsoftware/ser2sock.git && sudo mv ser2sock /usr/local/bin && cd /usr/local/bin/ser2sock && chown -R pi:pi . && mv config.h.in config.h && cc -o ser2sock ser2sock.c && sudo nano /etc/systemd/system/ser2sock.service
 ```
@@ -211,7 +212,7 @@ Remove "TLSv1" in the line "jdk.tls.disabledAlgorithms="
 Ctl x y enter to save   
 Restart CGate to load the new settings.
 ```text
-sudo systemctl restart cgate   
+sudo systemctl restart cgate.service   
 ```
 
 
