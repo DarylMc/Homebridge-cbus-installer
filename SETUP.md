@@ -74,7 +74,7 @@ Copy the project xml to the Pi, placing it in the /home/pi directory.
   ```  
   Windows is similar eg  
   ```txt  
-  scp "C:\Users\darylmcdougall\Desktop\TEST.xml" pi@zero.local:/home/pi
+  scp "C:\Users\darylmcdougall\Desktop\TEST.xml" pi@homebridge.local:/home/pi
   ```
 
 ## 8. Install CBus plugin and script components 
