@@ -71,6 +71,10 @@ Copy the project xml to the Pi, placing it in the /home/pi directory.
   This will copy the file from your Mac Desktop folder to the /home/pi folder on the raspberry pi.  
   ```txt 
   scp /Users/<YourMacUserName>/Desktop/<YourProjectName>.xml pi@homebridge.local:/home/pi
+  ```  
+  Windows is similar eg  
+  ```txt  
+  scp "C:\Users\darylmcdougall\Desktop\TEST.xml" pi@zero.local:/home/pi
   ```
 
 ## 8. Install CBus plugin and script components 
